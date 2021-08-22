@@ -22,10 +22,10 @@ class Api {
   }
 
   patchUserInformation(data) {
-    return fetch(`${this._adress}${this._groupId}/users/me`, {
+    return fetch(`${this._adress}users/me`, {
       method: "PATCH",
+      credentials: "include",
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -50,10 +50,10 @@ class Api {
   }
 
   postCard({ name, link }) {
-    return fetch(`${this._adress}${this._groupId}/cards/`, {
+    return fetch(`${this._adress}cards/`, {
       method: "POST",
+      credentials: 'include',
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -67,10 +67,10 @@ class Api {
 
   changeLikeCardStatus(id, isLiked) {
     const methodParametr = isLiked ? "DELETE" : "PUT";
-    return fetch(`${this._adress}${this._groupId}/cards/likes/${id}`, {
+    return fetch(`${this._adress}cards/likes/${id}`, {
       method: methodParametr,
+      credentials: 'include',
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => {
@@ -79,10 +79,10 @@ class Api {
   }
 
   putLikeCard(id) {
-    return fetch(`${this._adress}${this._groupId}/cards/likes/${id}`, {
+    return fetch(`${this._adress}cards/likes/${id}`, {
       method: "PUT",
+      credentials: 'include',
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => {
@@ -91,10 +91,10 @@ class Api {
   }
 
   deleteLikeCard(id) {
-    return fetch(`${this._adress}${this._groupId}/cards/likes/${id}`, {
+    return fetch(`${this._adress}cards/likes/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => {
@@ -103,10 +103,10 @@ class Api {
   }
 
   deleteCards(id) {
-    return fetch(`${this._adress}${this._groupId}/cards/${id}`, {
+    return fetch(`${this._adress}cards/${id}`, {
       method: "DELETE",
+      credentials: 'include',
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
     }).then((res) => {
@@ -115,10 +115,10 @@ class Api {
   }
 
   pathcAvatar(avatarURL) {
-    return fetch(`${this._adress}${this._groupId}/users/me/avatar`, {
+    return fetch(`${this._adress}users/me/avatar`, {
       method: "PATCH",
+      credentials: 'include',
       headers: {
-        authorization: this._token,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
