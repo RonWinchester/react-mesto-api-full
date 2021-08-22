@@ -10,9 +10,11 @@ class Api {
   }
 
   getUserInformation() {
-    return fetch(`${this._adress}${this._groupId}/users/me`, {
+    return fetch(`${this._adress}users/me`, {
+      method: 'GET',
+      credentials: 'include',
       headers: {
-        authorization: this._token,
+        "Content-Type": "application/json",
       },
     }).then((res) => {
       return this._getResponseData(res);
