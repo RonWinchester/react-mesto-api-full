@@ -1,0 +1,24 @@
+.header__menu-button {
+    width: 24px;
+    height: 18px;
+    background-image: url('../../../images/Group5.svg');
+    background-color: transparent;
+    background-position: center;
+    background-size: contain;
+    background-repeat: repeat-y;
+    border: none;
+    cursor: pointer;
+    align-self: center;
+    display: none;
+} 
+
+.header__menu-button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width:565px) {
+    .header__menu-button {
+        display: block;
+    }
+
+}

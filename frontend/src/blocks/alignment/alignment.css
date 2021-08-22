@@ -1,0 +1,28 @@
+.alignment {
+  max-width: calc(100% - 2 * 200px);
+  margin: 0 auto;
+}
+
+@media screen and (max-width:1279px) {
+  .alignment {
+    max-width: calc(100% - 160px*2);
+  }
+}
+
+@media screen and (max-width:1023px) {
+  .alignment {
+    max-width: calc(100% - 90px*2);
+  }
+}
+
+@media screen and (max-width:889px) {
+  .alignment {
+    max-width: calc(100% - 60px*2);
+  }
+}
+
+@media screen and (max-width:767px) {
+  .alignment {
+    max-width: 100%;
+  }
+}

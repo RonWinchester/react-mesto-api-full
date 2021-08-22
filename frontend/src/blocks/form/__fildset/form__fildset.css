@@ -1,0 +1,11 @@
+.form__fildset {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  border: none;
+
+  box-sizing: border-box;
+  margin: 0;
+}
+

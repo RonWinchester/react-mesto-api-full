@@ -1,0 +1,7 @@
+.header__menu-button_close {
+    background-image: url('../../../../images/vector-buttons-x.svg');
+    transform: rotate(-45deg);
+    background-repeat: no-repeat;
+    width: 20px;
+    height: 20px;
+}

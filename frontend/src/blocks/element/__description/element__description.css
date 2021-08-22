@@ -1,0 +1,9 @@
+.element__description {
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: calc(100% - 21px - 15px);
+  margin: 0 auto;
+  margin-top: 23px;
+  margin-bottom: 25px; /*размеры по пиксель перфект*/
+}

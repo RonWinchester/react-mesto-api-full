@@ -1,0 +1,21 @@
+.link {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: white;
+    text-decoration: none;
+    align-self: center;
+}
+
+.link:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width:767px) {
+    .link {
+        font-size: 14px;
+        line-height: 17px;
+    }
+}

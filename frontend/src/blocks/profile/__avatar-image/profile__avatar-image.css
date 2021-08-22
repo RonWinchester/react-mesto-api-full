@@ -1,0 +1,16 @@
+.profile__avatar-image {
+  position: absolute;
+  width: 126px;
+  height: 126px;
+  opacity: 1;
+}
+
+.profile__avatar-image:hover {
+  transition: background-color 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: pointer;
+  background-image: url('../../../images/editAvatarImage.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 26px;
+}

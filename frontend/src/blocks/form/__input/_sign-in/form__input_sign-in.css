@@ -1,0 +1,11 @@
+.form__input_sign-in {
+    border-bottom: 2px solid #CCCCCC;
+    background-color: transparent;
+    color: white;
+}
+
+@media screen and (max-width:767px) {
+    .form__input_sign-in:first-child {
+      margin-top: 40px;
+    }
+  }
