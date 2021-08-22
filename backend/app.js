@@ -12,6 +12,7 @@ const auth = require('./middlewares/auth');
 const { errorHandler } = require('./middlewares/errorHandler');
 const { createUserValidation, loginUserValidation } = require('./middlewares/validation');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { allowCors } = require('./middlewares/cors');
 
 dotenv.config();
 
@@ -20,6 +21,8 @@ const app = express();
 app.use(cookieParser());
 app.use(helmet());
 app.use(express.json());
+
+app.use(allowCors);
 
 mongoose.connect('mongodb://localhost:27017/mestodb', {
   useNewUrlParser: true,
