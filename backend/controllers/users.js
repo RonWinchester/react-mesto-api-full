@@ -16,7 +16,8 @@ module.exports.login = (req, res, next) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret', { expiresIn: '7d' });
       res.cookie('jwt', token, {
         httpOnly: true,
-        sameSite: true,
+        sameSite: 'None',
+        secure: true,
       })
         .status(200).send({ token });
     })
@@ -24,6 +25,17 @@ module.exports.login = (req, res, next) => {
       const error = new AuthorizationError('Неправильная почта или пароль');
       next(error);
     });
+};
+
+module.exports.logout = (req, res, next) => {
+  User.findById(req.user._id)
+    .then((user) => {
+      if (!user) {
+        return next(new NotFoundError('Пользователь не найден'));
+      }
+      return res.clearCookie('jwt').status(200).send({ message: 'Выход из профиля' });
+    })
+    .catch(next);
 };
 
 module.exports.createUser = (req, res, next) => {

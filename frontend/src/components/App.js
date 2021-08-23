@@ -45,7 +45,7 @@ function App() {
   React.useEffect(() => {
     if (!loggedIn) {
       return;
-  }
+    }
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
         setCurrentUser(userData);
@@ -228,7 +228,7 @@ function App() {
           setEmail(email);
           setLoggedIn(true);
           history.push("/");
-          localStorage.setItem("token", res.token);
+          //localStorage.setItem("token", res.token);
         }
       })
       .catch((err) => {
@@ -238,8 +238,23 @@ function App() {
       });
   }
 
-  //Проверка токена
   function checkToken() {
+    auth
+      .getContent()
+      .then((res) => {
+        setEmail(res.data.email);
+        setLoggedIn(true);
+        history.push("/");
+      })
+      .catch((err) => {
+        localStorage.removeItem("token");
+        history.push("/sign-in");
+        console.log(err);
+      });
+  }
+
+  //Проверка токена
+  /*   function checkToken() {
     const jwt = localStorage.getItem("token");
     if (jwt) {
       auth
@@ -255,14 +270,33 @@ function App() {
           console.log(err);
         });
     }
-  }
+  } */
 
   //Выход из профиля
   function logOut() {
     localStorage.removeItem("token");
     setLoggedIn(false);
     history.push("/sign-in");
+
+    auth
+      .logout()
+      .then(() => {
+        //localStorage.removeItem("token");
+        setLoggedIn(false);
+        //setEmail('');
+        history.push("/sign-in");
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err.message}!`);
+      });
   }
+
+  /*  //Выход из профиля
+  function logOut() {
+    localStorage.removeItem("token");
+    setLoggedIn(false);
+    history.push("/sign-in");
+  } */
 
   React.useEffect(() => {
     checkToken();

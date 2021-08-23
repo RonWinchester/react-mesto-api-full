@@ -7,6 +7,7 @@ const {
   editProfile,
   editAvatar,
   getUserInfo,
+  logout,
 } = require('../controllers/users');
 
 usersRouter.get('/users/me', getUserInfo);
@@ -14,5 +15,6 @@ usersRouter.get('/users', getUsers);
 usersRouter.get('/users/:userId', userValidation, getUser);
 usersRouter.patch('/users/me', editProfileValidation, editProfile);
 usersRouter.patch('/users/me/avatar', editAvatarValidation, editAvatar);
+usersRouter.post('/logout', logout);
 
 module.exports = usersRouter;
