@@ -46,6 +46,7 @@ function App() {
     if (!loggedIn) {
       return;
     }
+    checkToken();
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
         setCurrentUser(userData);
@@ -242,7 +243,7 @@ function App() {
     auth
       .getContent()
       .then((res) => {
-        setEmail(res.data.email);
+        setEmail(res.email);
         setLoggedIn(true);
         history.push("/");
       })
@@ -274,9 +275,9 @@ function App() {
 
   //Выход из профиля
   function logOut() {
-    localStorage.removeItem("token");
+/*     localStorage.removeItem("token");
     setLoggedIn(false);
-    history.push("/sign-in");
+    history.push("/sign-in"); */
 
     auth
       .logout()
@@ -298,9 +299,9 @@ function App() {
     history.push("/sign-in");
   } */
 
-  React.useEffect(() => {
+/*   React.useEffect(() => {
     checkToken();
-  }, []);
+  }, [loggedIn]); */
 
   return (
     <div className="page__container">

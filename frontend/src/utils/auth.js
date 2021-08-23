@@ -37,7 +37,7 @@ export const authorize = ({ email, password }) => {
 };
 
 export const logout = () => {
-  return fetch(`${BASE_URL}/logout`, {
+  return fetch(`${BASE_URL}logout`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -54,7 +54,7 @@ export const getContent = (token) => {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-     // 'Authorization': `Bearer ${token}`,
+      //'Authorization': `Bearer ${token}`,
     },
   }).then((response) => getResponseData(response));
 };
