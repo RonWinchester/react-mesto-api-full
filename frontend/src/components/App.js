@@ -43,6 +43,9 @@ function App() {
 
   //Подтягиваем данные пользователя и карточки
   React.useEffect(() => {
+    if (!loggedIn) {
+      return;
+  }
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
         setCurrentUser(userData);
@@ -51,7 +54,7 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка при загрузке данных профиля и карточек: ${err}`);
       });
-  }, []);
+  }, [loggedIn]);
 
   //Обновляем данные пользователя
   function handleUpdateUser(data) {
@@ -238,6 +241,7 @@ function App() {
   //Проверка токена
   function checkToken() {
     const jwt = localStorage.getItem("token");
+    console.log(jwt)
     if (jwt) {
       auth
         .getContent(jwt)

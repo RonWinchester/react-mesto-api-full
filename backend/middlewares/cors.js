@@ -3,6 +3,8 @@ const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 const allowedCors = [
   'https://polugrudov.students.nomoredomains.club/',
   'http://polugrudov.students.nomoredomains.club/',
+  'https://polugrudov.students.nomoredomains.club',
+  'http://polugrudov.students.nomoredomains.club',
   'http://localhost:3000',
 ];
 
@@ -21,6 +23,5 @@ module.exports.allowCors = (req, res, next) => {
     res.header('Access-Control-Allow-Headers', requestHeaders);
     return res.end();
   }
-  console.log('11');
   next();
 };
