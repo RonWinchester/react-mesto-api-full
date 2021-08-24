@@ -63,7 +63,7 @@ function App() {
     api
       .patchUserInformation(data)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.user);
         closeAllPopups();
       })
       .catch((err) => {

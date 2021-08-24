@@ -17,7 +17,6 @@ class Api {
         "Content-Type": "application/json",
       },
     }).then((res) => {
-      console.log(res)
       return this._getResponseData(res);
     });
   }
@@ -68,8 +67,9 @@ class Api {
   }
 
   changeLikeCardStatus(id, isLiked) {
+    console.log(id, isLiked)
     const methodParametr = isLiked ? "DELETE" : "PUT";
-    return fetch(`${this._adress}cards/likes/${id}`, {
+    return fetch(`${this._adress}cards/${id}/likes`, {
       method: methodParametr,
       credentials: 'include',
       headers: {
@@ -81,7 +81,7 @@ class Api {
   }
 
   putLikeCard(id) {
-    return fetch(`${this._adress}cards/likes/${id}`, {
+    return fetch(`${this._adress}cards/${id}/likes`, {
       method: "PUT",
       credentials: 'include',
       headers: {
@@ -93,7 +93,7 @@ class Api {
   }
 
   deleteLikeCard(id) {
-    return fetch(`${this._adress}cards/likes/${id}`, {
+    return fetch(`${this._adress}cards/${id}/likes`, {
       method: "DELETE",
       credentials: 'include',
       headers: {

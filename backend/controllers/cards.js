@@ -7,7 +7,7 @@ module.exports.getCards = (req, res, next) => {
   Card.find({})
     .orFail(() => { throw new NotFoundError('Карточки не найдены'); })
     .then((card) => {
-      res.status(200).send({ card });
+      res.status(200).send({ data: card });
     })
     .catch(next);
 };
