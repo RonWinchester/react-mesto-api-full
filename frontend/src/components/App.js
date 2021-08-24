@@ -43,19 +43,22 @@ function App() {
 
   //Подтягиваем данные пользователя и карточки
   React.useEffect(() => {
-    if (!loggedIn) {
+    /* if (!loggedIn) {
       return;
-    }
+    } */
     /* checkToken(); */
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
         setCurrentUser(userData);
         setCards(initialCards.data);
+        setLoggedIn(true)
+        history.push('/');
       })
       .catch((err) => {
         console.log(`Ошибка при загрузке данных профиля и карточек: ${err}`);
       });
-  }, [loggedIn]);
+  }, [loggedIn, history]);
+
 
   //Обновляем данные пользователя
   function handleUpdateUser(data) {
@@ -275,7 +278,6 @@ function App() {
 
   //Выход из профиля
   function logOut() {
-    console.log('aaa')
     auth
       .logout()
       .then(() => {
