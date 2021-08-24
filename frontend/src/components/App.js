@@ -197,6 +197,7 @@ function App() {
     api
       .postCard({ name, link })
       .then((newCard) => {
+        console.log(newCard)
         setCards([newCard, ...cards]);
         closeAllPopups();
       })

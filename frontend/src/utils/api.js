@@ -61,6 +61,7 @@ class Api {
         name: name,
       }),
     }).then((res) => {
+      console.log(res)
       return this._getResponseData(res);
     });
   }
