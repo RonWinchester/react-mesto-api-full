@@ -17,6 +17,7 @@ class Api {
         "Content-Type": "application/json",
       },
     }).then((res) => {
+      console.log(res)
       return this._getResponseData(res);
     });
   }
