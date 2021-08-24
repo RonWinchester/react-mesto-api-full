@@ -49,7 +49,6 @@ function App() {
     /* checkToken(); */
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
-        console.log(initialCards)
         setCurrentUser(userData);
         setCards(initialCards.data);
       })
@@ -198,7 +197,6 @@ function App() {
     api
       .postCard({ name, link })
       .then((newCard) => {
-        console.log(newCard)
         setCards([newCard, ...cards]);
         closeAllPopups();
       })
