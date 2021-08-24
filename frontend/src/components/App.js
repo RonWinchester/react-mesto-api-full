@@ -49,8 +49,9 @@ function App() {
     /* checkToken(); */
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
+        console.log(initialCards)
         setCurrentUser(userData);
-        setCards(initialCards.card);
+        setCards(initialCards.data);
       })
       .catch((err) => {
         console.log(`Ошибка при загрузке данных профиля и карточек: ${err}`);
