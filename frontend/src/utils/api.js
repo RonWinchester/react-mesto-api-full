@@ -67,7 +67,6 @@ class Api {
   }
 
   changeLikeCardStatus(id, isLiked) {
-    console.log(id, isLiked)
     const methodParametr = isLiked ? "DELETE" : "PUT";
     return fetch(`${this._adress}cards/${id}/likes`, {
       method: methodParametr,
