@@ -19,6 +19,7 @@ module.exports.login = (req, res, next) => {
         httpOnly: true,
         sameSite: 'None',
         secure: true,
+        expires: new Date(Date.now() + (60 * 24 * 3600000)),
       })
         .status(200).send({ token });
     })
