@@ -1,9 +1,10 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
-const dotenv = require('dotenv');
+// const dotenv = require('dotenv');
 const usersRouter = require('./routes/users');
 const cardsRouter = require('./routes/cards');
 const router = require('./routes/router');
@@ -14,7 +15,7 @@ const { createUserValidation, loginUserValidation } = require('./middlewares/val
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { allowCors } = require('./middlewares/cors');
 
-dotenv.config();
+// dotenv.config();
 
 const { PORT = 3000 } = process.env;
 const app = express();

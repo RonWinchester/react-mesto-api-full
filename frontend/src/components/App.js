@@ -57,7 +57,6 @@ function App() {
       });
   }, [loggedIn]);
 
-
   //Обновляем данные пользователя
   function handleUpdateUser(data) {
     api
@@ -240,7 +239,7 @@ function App() {
       });
   }
 
-/*   function checkToken() {
+  /*   function checkToken() {
     auth
       .getContent()
       .then((res) => {
@@ -276,6 +275,7 @@ function App() {
 
   //Выход из профиля
   function logOut() {
+    console.log('aaa')
     auth
       .logout()
       .then(() => {
@@ -296,7 +296,7 @@ function App() {
     history.push("/sign-in");
   } */
 
-/*   React.useEffect(() => {
+  /*   React.useEffect(() => {
   if (!loggedIn) {
       return;
     }
