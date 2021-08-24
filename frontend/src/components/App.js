@@ -76,7 +76,6 @@ function App() {
     api
       .pathcAvatar(data.avatar)
       .then((data) => {
-        console.log(data.user)
         setCurrentUser(data.user);
         closeAllPopups();
       })
