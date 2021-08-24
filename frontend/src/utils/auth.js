@@ -48,8 +48,19 @@ export const logout = () => {
   });
 };
 
-export const getContent = (token) => {
+/* export const getContent = (token) => {
   return fetch(`${BASE_URL}users/me`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      //'Authorization': `Bearer ${token}`,
+    },
+  }).then((response) => getResponseData(response));
+}; */
+
+export const getCookie = () => {
+  return fetch(`${BASE_URL}check-cookie`, {
     method: "GET",
     credentials: "include",
     headers: {

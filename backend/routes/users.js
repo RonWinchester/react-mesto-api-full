@@ -8,8 +8,10 @@ const {
   editAvatar,
   getUserInfo,
   logout,
+  getCookie,
 } = require('../controllers/users');
 
+usersRouter.get('/check-cookie', getCookie);
 usersRouter.get('/users/me', getUserInfo);
 usersRouter.get('/users', getUsers);
 usersRouter.get('/users/:userId', userValidation, getUser);

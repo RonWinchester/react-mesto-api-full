@@ -163,3 +163,19 @@ module.exports.editAvatar = (req, res, next) => {
       }
     });
 };
+
+module.export.getCookie = (req, res, next) => {
+  if (!req.cookies.jwt) {
+    throw new AuthorizationError('Необходима авторизация!');
+  }
+  const token = req.cookies.jwt;
+  let payload;
+  try {
+    payload = jwt.verify(token, NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret');
+  } catch (err) {
+    throw new AuthorizationError('Необходима Авторизация');
+  }
+
+  req.user = payload;
+  return next();
+};

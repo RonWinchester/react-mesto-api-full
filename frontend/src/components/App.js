@@ -46,11 +46,11 @@ function App() {
     if (!loggedIn) {
       return;
     }
-    checkToken();
+    /* checkToken(); */
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
         setCurrentUser(userData);
-        setCards(initialCards);
+        setCards(initialCards.card);
       })
       .catch((err) => {
         console.log(`Ошибка при загрузке данных профиля и карточек: ${err}`);
@@ -240,7 +240,7 @@ function App() {
       });
   }
 
-  function checkToken() {
+/*   function checkToken() {
     auth
       .getContent()
       .then((res) => {
@@ -253,7 +253,7 @@ function App() {
         history.push("/sign-in");
         console.log(err);
       });
-  }
+  } */
 
   //Проверка токена
   /*   function checkToken() {
@@ -276,10 +276,6 @@ function App() {
 
   //Выход из профиля
   function logOut() {
-/*     localStorage.removeItem("token");
-    setLoggedIn(false);
-    history.push("/sign-in"); */
-
     auth
       .logout()
       .then(() => {
@@ -301,8 +297,11 @@ function App() {
   } */
 
 /*   React.useEffect(() => {
-    checkToken();
-  }, [loggedIn]); */
+  if (!loggedIn) {
+      return;
+    }
+    getCookie();
+  }, []); */
 
   return (
     <div className="page__container">
