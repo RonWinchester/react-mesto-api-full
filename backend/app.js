@@ -18,7 +18,7 @@ dotenv.config();
 
 const { PORT = 3000 } = process.env;
 const app = express();
-app.use(cookieParser());
+
 app.use(helmet());
 app.use(express.json());
 
@@ -32,6 +32,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(requestLogger);
 
+app.use(cookieParser());
 // роуты, не требующие авторизации
 app.post('/signup', createUserValidation, createUser);
 app.post('/signin', loginUserValidation, login);
