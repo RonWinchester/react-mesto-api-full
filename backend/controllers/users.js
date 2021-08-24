@@ -164,7 +164,7 @@ module.exports.editAvatar = (req, res, next) => {
     });
 };
 
-module.export.getCookie = (req, res, next) => {
+/* module.export.getCookie = (req, res, next) => {
   if (!req.cookies.jwt) {
     throw new AuthorizationError('Необходима авторизация!');
   }
@@ -178,4 +178,4 @@ module.export.getCookie = (req, res, next) => {
 
   req.user = payload;
   return next();
-};
+}; */
