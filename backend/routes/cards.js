@@ -2,7 +2,7 @@ const cardsRouter = require('express').Router();
 
 const { celebrate, Joi } = require('celebrate');
 const validator = require('validator');
-const { cardsCreateValidation, paramsValidation } = require('../middlewares/validation');
+const { /* cardsCreateValidation, */ paramsValidation } = require('../middlewares/validation');
 
 const method = (value) => {
   const result = validator.isURL(value);
