@@ -1,11 +1,20 @@
 const { celebrate, Joi } = require('celebrate');
+/* const validator = require('validator'); */
 
-module.exports.cardsCreateValidation = celebrate({
+/* const method = (value) => {
+  const result = validator.isURL(value);
+  if (result) {
+    return value;
+  }
+  throw new Error('URL validation err');
+}; */
+
+/* module.exports.cardsCreateValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required(),
+    link: Joi.string().required().custom(method),
   }),
-});
+}); */
 
 module.exports.createUserValidation = celebrate({
   body: Joi.object().keys({
