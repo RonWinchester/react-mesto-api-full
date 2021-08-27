@@ -8,7 +8,6 @@ const {
   editAvatar,
   getUserInfo,
   logout,
-  getCookie,
 } = require('../controllers/users');
 
 /* usersRouter.get('/check-cookie', getCookie); */
