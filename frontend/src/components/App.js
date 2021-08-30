@@ -11,12 +11,13 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import defaultAvatar from "../images/oko.jpg";
 import AddPlacePopup from "./AddPlacePopup";
-import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import Login from "./Login";
 import Register from "./Register";
 import ProtectedRoute from "./ProtectedRoute";
 import InfoTooltip from "./InfoTooltip";
 import * as auth from "../utils/auth";
+import DeletePopupForm from "./DeletePopupForm";
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] =
@@ -25,6 +26,7 @@ function App() {
     React.useState(false);
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
   const [isInfoTooltipOpen, setInfoTooltip] = React.useState(false);
+  const [isDeletePopupOpen, setDeletePopupOpen] = React.useState(false);
   const [cards, setCards] = React.useState([]);
   const [selectedCard, setSelectedCard] = React.useState({
     name: "",
@@ -43,22 +45,18 @@ function App() {
 
   //Подтягиваем данные пользователя и карточки
   React.useEffect(() => {
-    /* if (!loggedIn) {
-      return;
-    } */
-    /* checkToken(); */
     Promise.all([api.getUserInformation(), api.getCards()])
       .then(([userData, initialCards]) => {
         setCurrentUser(userData);
+        initialCards.data.reverse();
         setCards(initialCards.data);
-        setLoggedIn(true)
-        history.push('/');
+        setLoggedIn(true);
+        history.push("/");
       })
       .catch((err) => {
         console.log(`Ошибка при загрузке данных профиля и карточек: ${err}`);
       });
   }, [loggedIn, history]);
-
 
   //Обновляем данные пользователя
   function handleUpdateUser(data) {
@@ -102,36 +100,21 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  const [isCardDelet, setIsCardDelet] = React.useState({});
+
+  function handleDeletePopupOpen(card) {
+    setDeletePopupOpen(true);
+    setIsCardDelet(card)
+  }
+
   function closeAllPopups() {
     setIsEditAvatarPopupOpen(false);
     setIsEditProfilePopupOpen(false);
     setIsAddPlacePopupOpen(false);
     setInfoTooltip(false);
+    setDeletePopupOpen(false);
     setSelectedCard({ name: "", link: "" });
   }
-  //Закрытие попапа по Esc и овеврлею
-  /*   React.useEffect(() => {
-      function handleEscClose(evt) {
-        if (evt.key === 'Escape') {
-          closeAllPopups();
-        }
-      }
-  
-      function handleOverlayClose(evt) {
-        if (evt.target.classList.contains('popup')) {
-          closeAllPopups();
-        }
-      }
-  
-      if (isInfoTooltipOpen || isEditProfilePopupOpen || isEditAvatarPopupOpen || isAddPlacePopupOpen || selectedCard.name !== '' || selectedCard.link !== '') {
-        document.addEventListener('keyup', handleEscClose);
-        document.addEventListener('click', handleOverlayClose);
-      }
-      return () => {
-        document.removeEventListener('keyup', handleEscClose);
-        document.removeEventListener('click', handleOverlayClose);
-      }
-    }, [isInfoTooltipOpen, isEditProfilePopupOpen, isEditAvatarPopupOpen, isAddPlacePopupOpen, selectedCard]); */
 
   function handleOverlayClose(evt) {
     if (evt.target === evt.currentTarget) {
@@ -182,12 +165,14 @@ function App() {
       });
   }
 
+
   //Удаялем карточки
   function handleCardDelete(card) {
     api
       .deleteCards(card._id)
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== card._id && c));
+        closeAllPopups()
       })
       .catch((err) => {
         console.log(`Ошибка при удалении карточки : ${err}`);
@@ -242,39 +227,6 @@ function App() {
       });
   }
 
-  /*   function checkToken() {
-    auth
-      .getContent()
-      .then((res) => {
-        setEmail(res.email);
-        setLoggedIn(true);
-        history.push("/");
-      })
-      .catch((err) => {
-        localStorage.removeItem("token");
-        history.push("/sign-in");
-        console.log(err);
-      });
-  } */
-
-  //Проверка токена
-  /*   function checkToken() {
-    const jwt = localStorage.getItem("token");
-    if (jwt) {
-      auth
-        .getContent(jwt)
-        .then((res) => {
-          setEmail(res.data.email);
-          setLoggedIn(true);
-          history.push("/");
-        })
-        .catch((err) => {
-          localStorage.removeItem("token");
-          history.push("/sign-in");
-          console.log(err);
-        });
-    }
-  } */
 
   //Выход из профиля
   function logOut() {
@@ -291,19 +243,6 @@ function App() {
       });
   }
 
-  /*  //Выход из профиля
-  function logOut() {
-    localStorage.removeItem("token");
-    setLoggedIn(false);
-    history.push("/sign-in");
-  } */
-
-  /*   React.useEffect(() => {
-  if (!loggedIn) {
-      return;
-    }
-    getCookie();
-  }, []); */
 
   return (
     <div className="page__container">
@@ -323,7 +262,7 @@ function App() {
             component={Main}
             cards={cards}
             onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
+            onCardDelete={handleDeletePopupOpen}
             onEditProfile={handleEditProfileClick}
             onAddPlace={handleAddPlaceClick}
             onEditAvatar={handleEditAvatarClick}
@@ -351,11 +290,11 @@ function App() {
           handleOverlayClose={handleOverlayClose}
         />
         <PopupWithForm
-          popupId="deletionCardForm"
+          /* popupId="deletionCardForm"
           buttonText="Да"
           formName="deletionCardForm"
           formId="CardRemoveForm"
-          title="Вы уверены?"
+          title="Вы уверены?" */
           handleOverlayClose={handleOverlayClose}
         />
         <ImagePopup
@@ -371,6 +310,13 @@ function App() {
           registrationFalse={"Что-то пошло не так! Попробуйте ещё раз."}
           handleOverlayClose={handleOverlayClose}
         />
+        <DeletePopupForm
+          isCardDelet= {isCardDelet}
+          handleCardDelete={handleCardDelete}
+          isOpen={isDeletePopupOpen}
+          onClose={closeAllPopups}
+          handleOverlayClose={handleOverlayClose}
+        ></DeletePopupForm>
       </CurrentUserContext.Provider>
     </div>
   );
