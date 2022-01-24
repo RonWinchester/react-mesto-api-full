@@ -19,7 +19,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "npm run build && scp -r ./build/* ronwinchester@polugrudov.students.nomoredomains.club:/home/ronwinchester/frontend"
+    "deploy": "npm run build && scp -r ./build/* a0617425@polugrudov.ru:/home/a0617425/domains/polugrudov.ru/public_html/mesto"
   },
   "eslintConfig": {
     "extends": [
