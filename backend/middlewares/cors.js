@@ -2,9 +2,9 @@ const DEFAULT_ALLOWED_METHODS = 'GET,HEAD,PUT,PATCH,POST,DELETE';
 
 const allowedCors = [
   'https://mesto.polugrudov.ru/',
-  'https://mesto.polugrudov.ru/',
+  'http://mesto.polugrudov.ru/',
   'https://mesto.polugrudov.ru',
-  'https://mesto.polugrudov.ru',
+  'http://mesto.polugrudov.ru',
   'http://localhost:3000',
 ];
 

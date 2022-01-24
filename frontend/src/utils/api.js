@@ -133,7 +133,7 @@ class Api {
 export default Api;
 
 export const api = new Api({
-  adress: "https://mesto.polugrudov.ru/api/",
+  adress: "https://mestoapi.polugrudov.ru/",
   //token: "30104c84-de4d-41a2-bc56-a72d831bec2a",
   //groupId: 'cohort-24'
 });

@@ -1,4 +1,4 @@
-export const BASE_URL = "https://mesto.polugrudov.ru/api/";
+export const BASE_URL = "https://mestoapi.polugrudov.ru/";
 
 function getResponseData(res) {
   return res.ok ? res.json() : Promise.reject(`${res.status}`);
