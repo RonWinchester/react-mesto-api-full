@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint .",
     "dev": "nodemon app.js",
-    "start": "node app.js"
+    "start": "node app.js",
+    "deploy": "scp -r ./* a0617425@polugrudov.ru:/home/a0617425/domains/polugrudov.ru/public_html/mesto/api"
   },
   "keywords": [],
   "author": "Roman",

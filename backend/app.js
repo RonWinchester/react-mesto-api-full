@@ -18,6 +18,7 @@ const { allowCors } = require('./middlewares/cors');
 // dotenv.config();
 
 const { PORT = 3000 } = process.env;
+const { PASS } = process.env;
 const app = express();
 
 app.use(helmet());
@@ -25,7 +26,7 @@ app.use(express.json());
 
 app.use(allowCors);
 
-mongoose.connect('mongodb://localhost:27017/mestodb', {
+mongoose.connect(`mongodb+srv://RonWinchester:${PASS}@cluster0.wb7mu.mongodb.net/mestodb?retryWrites=true&w=majority`, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false,
